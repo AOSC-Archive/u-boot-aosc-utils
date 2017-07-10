@@ -1,0 +1,32 @@
+#! /bin/bash
+if [ ! -e /etc/default/u-boot ]; then
+	echo "Configuration file didn't exist."
+	exit 1
+fi
+
+source /etc/default/u-boot
+
+TMPDIR=
+
+if [ "$UBOOT_PART" ]; then
+	TMPDIR="$(mktemp -d)"
+	mkdir -p "$TMPDIR"/mnt
+	mount "$UBOOT_PART" "$TMPDIR"/mnt
+	UPDATE_DIR="$TMPDIR/mnt"
+else if [ "$UBOOT_DIR" ]; then
+	UPDATE_DIR="$UBOOT_DIR"
+fi
+
+if [ "$KERNEL_IMAGE_ROOTFS_FILE" ] && [ "$KERNEL_IMAGE_NAME" ]; then
+	cp "$KERNEL_IMAGE_ROOTFS_FILE" "$UPDATE_DIR/$KERNEL_IMAGE_NAME"
+fi
+
+if [ "$DTB_ROOTFS_FILE" ] && [ "$DTB_NAME" ]; then
+	cp "$DTB_ROOTFS_FILE" "$UPDATE_DIR/$DTB_NAME"
+fi
+
+if [ "$TMPDIR" ]; then
+	umount "$TMPDIR"/mnt
+	rmdir "$TMPDIR"/mnt
+	rmdir "$TMPDIR"
+fi

@@ -1,0 +1,7 @@
+UBOOT_PART=/dev/mmcblk0p1
+
+KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-armel-boot/linux-kernel/zImage
+KERNEL_IMAGE_NAME=zImage
+
+DTB_ROOTFS_FILE=/usr/lib/aosc-os-armel-boot/dtbs-linux-kernel/foo-bar.dtb
+DTB_NAME=dtb.dtb
