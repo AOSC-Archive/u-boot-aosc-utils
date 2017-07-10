@@ -1,7 +1,14 @@
 UBOOT_PART=/dev/mmcblk0p1
+UBOOT_MEDIA_ID="mmc 0:1"
+UBOOT_ARCH=arm
 
 KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-armel-boot/linux-kernel/zImage
 KERNEL_IMAGE_NAME=zImage
+KERNEL_IMAGE_TYPE=zImage
+KERNEL_IMAGE_LOADADDR=0x42000000
 
 DTB_ROOTFS_FILE=/usr/lib/aosc-os-armel-boot/dtbs-linux-kernel/foo-bar.dtb
 DTB_NAME=dtb.dtb
+DTB_LOADADDR=0x43000000
+
+BOOTARGS="console=ttyS0,115200 console=tty0 root=/dev/mmcblk0p2 rootwait earlyprintk panic=10"

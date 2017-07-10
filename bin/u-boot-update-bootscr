@@ -1,0 +1,60 @@
+#! /bin/bash
+if [ ! -e /etc/default/u-boot ]; then
+	echo "Configuration file didn't exist."
+	exit 1
+fi
+
+source /etc/default/u-boot
+
+TMPDIR=
+TMPDIR="$(mktemp -d)"
+
+if [ "$UBOOT_PART" ]; then
+	mkdir -p "$TMPDIR"/mnt
+	mount "$UBOOT_PART" "$TMPDIR"/mnt
+	UPDATE_DIR="$TMPDIR/mnt"
+else if [ "$UBOOT_DIR" ]; then
+	UPDATE_DIR="$UBOOT_DIR"
+fi
+
+cat /dev/null > "$TMPDIR"/boot.cmd
+
+if [ "$BOOTARGS" ]; then
+	echo "setenv bootargs $BOOTARGS" >> "$TMPDIR"/boot.cmd
+fi
+
+if [ "$KERNEL_IMAGE_LOADADDR" ]; then
+	echo "load $UBOOT_MEDIA_ID $KERNEL_IMAGE_LOADADDR $KERNEL_IMAGE_NAME" >> "$TMPDIR"/boot.cmd
+fi
+
+if [ "$DTB_LOADADDR" ]; then
+	echo "load $UBOOT_MEDIA_ID $DTB_LOADADDR $DTB_NAME" >> "$TMPDIR"/boot.cmd
+	echo "fdt addr $DTB_LOADADDR" >> "$TMPDIR"/boot.cmd
+	echo "fdt resize" >> "$TMPDIR"/boot.cmd
+fi
+
+case "$KERNEL_IMAGE_TYPE" in
+	zImage)
+		BOOTCMD=bootz
+		BOOT_PARAM_PAD="- "
+		;;
+	Image)
+		BOOTCMD=booti
+		BOOT_PARAM_PAD="- "
+		;;
+	boot.efi)
+		BOOTCMD=bootefi ;;
+	*)
+		echo "Unkown kernel image type!"
+		exit 1
+esac
+
+echo "$BOOTCMD $KERNEL_IMAGE_LOADADDR $BOOT_PARAM_PAD$DTB_LOADADDR" >> "$TMPDIR"/boot.cmd
+mkimage -C none -A "$UBOOT_ARCH" -T script -d "$TMPDIR"/boot.cmd "$UPDATE_DIR"/boot.scr
+
+if [ -d "$TMPDIR"/mnt ]; then
+	umount "$TMPDIR"/mnt
+	rmdir "$TMPDIR"/mnt
+fi
+
+rmdir "$TMPDIR"
