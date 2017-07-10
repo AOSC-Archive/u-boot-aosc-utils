@@ -1,0 +1,1 @@
+u_boot_write_file_addr "$SUNXI_FIRMWARE_DEVICE" "$SUNXI_UBOOT_DIR"/u-boot-sunxi-with-spl.bin 8192

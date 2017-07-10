@@ -1,0 +1,21 @@
+#! /bin/bash
+if [ ! -e /etc/default/u-boot ]; then
+	echo "Configuration file didn't exist."
+	exit 1
+fi
+
+source /etc/default/u-boot
+
+if [ "$UBOOT_FLASHER_DEVICE" ]; then
+	source /usr/lib/u-boot-aosc-utils/u-boot-flasher/devices/"$UBOOT_FLASHER_DEVICE"
+else
+	echo "No valid flasher device type!"
+	exit 1
+fi
+
+if [ "$UBOOT_FLASHER_SOLUTION" ]; then
+	source /usr/lib/u-boot-aosc-utils/u-boot-flasher/solutions/"$UBOOT_FLASHER_SOLUTION"
+else
+	echo "No valid flasher solution type!"
+	exit 1
+fi

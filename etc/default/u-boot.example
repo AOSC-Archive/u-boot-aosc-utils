@@ -11,4 +11,7 @@ DTB_ROOTFS_FILE=/usr/lib/aosc-os-armel-boot/dtbs-linux-kernel/foo-bar.dtb
 DTB_NAME=dtb.dtb
 DTB_LOADADDR=0x43000000
 
+UBOOT_FLASHER_DEVICE=block
+UBOOT_FLASHER_SOLUTION=foo
+
 BOOTARGS="console=ttyS0,115200 console=tty0 root=/dev/mmcblk0p2 rootwait earlyprintk panic=10"

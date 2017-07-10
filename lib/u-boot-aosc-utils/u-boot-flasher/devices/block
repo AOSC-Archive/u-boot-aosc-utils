@@ -1,0 +1,3 @@
+u_boot_write_file_addr() {
+	dd if=$2 of=$1 bs=1 seek=$3
+}
