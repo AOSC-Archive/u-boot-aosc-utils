@@ -1,0 +1,4 @@
+#! /bin/bash
+u-boot-flasher
+u-boot-update-image
+u-boot-update-bootscr
