@@ -52,6 +52,8 @@ esac
 echo "$BOOTCMD $KERNEL_IMAGE_LOADADDR $BOOT_PARAM_PAD$DTB_LOADADDR" >> "$TMPDIR"/boot.cmd
 mkimage -C none -A "$UBOOT_ARCH" -T script -d "$TMPDIR"/boot.cmd "$UPDATE_DIR"/boot.scr
 
+rm "$TMPDIR"/boot.cmd
+
 if [ -d "$TMPDIR"/mnt ]; then
 	umount "$TMPDIR"/mnt
 	rmdir "$TMPDIR"/mnt
