@@ -4,7 +4,7 @@ UBOOT_PART="$SUNXI_KERNEL_DEVICE"
 UBOOT_MEDIA_ID="mmc 0:1"
 UBOOT_ARCH=arm
 
-KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-arm64-sunxi-boot/linux-kernel-sunxi64/zImage
+KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-arm64-sunxi-boot/linux-kernel-sunxi64/Image
 KERNEL_IMAGE_NAME=Image
 KERNEL_IMAGE_TYPE=Image
 KERNEL_IMAGE_LOADADDR=0x40008000
