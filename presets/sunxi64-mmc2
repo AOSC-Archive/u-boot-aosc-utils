@@ -1,7 +1,7 @@
 source /etc/aosc-arm.conf
 
 UBOOT_PART="$SUNXI_KERNEL_DEVICE"
-UBOOT_MEDIA_ID="mmc 0:1"
+UBOOT_MEDIA_ID="mmc \${mmc_bootdev}:1"
 UBOOT_ARCH=arm
 
 KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-arm64-sunxi-boot/linux-kernel-sunxi64/Image
