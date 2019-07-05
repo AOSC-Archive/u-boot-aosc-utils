@@ -49,6 +49,10 @@ case "$KERNEL_IMAGE_TYPE" in
 		exit 1
 esac
 
+if [ "$EXTRA_UBOOT_COMMANDS" ]; then
+	echo "$EXTRA_UBOOT_COMMANDS" >> "$TMPDIR"/boot.cmd
+fi
+
 echo "$BOOTCMD $KERNEL_IMAGE_LOADADDR $BOOT_PARAM_PAD$DTB_LOADADDR" >> "$TMPDIR"/boot.cmd
 mkimage -C none -A "$UBOOT_ARCH" -T script -d "$TMPDIR"/boot.cmd "$UPDATE_DIR"/boot.scr
 
