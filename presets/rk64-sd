@@ -1,0 +1,20 @@
+source /etc/aosc-arm.conf
+
+UBOOT_PART="$SUNXI_KERNEL_DEVICE"
+UBOOT_MEDIA_ID="mmc 1:3"
+UBOOT_ARCH=arm
+
+KERNEL_IMAGE_ROOTFS_FILE=/usr/lib/aosc-os-arm64-rockchip-boot/linux-kernel-rk64/Image
+KERNEL_IMAGE_NAME=Image
+KERNEL_IMAGE_TYPE=Image
+KERNEL_IMAGE_LOADADDR=0x02080000
+
+DTB_ROOTFS_FILE=/usr/lib/aosc-os-arm64-rockchip-boot/dtb-"$DEVICE_NAME"/dtb.dtb
+DTB_NAME=dtb.dtb
+DTB_LOADADDR=0x01f00000
+
+UBOOT_FLASHER_DEVICE=block
+UBOOT_FLASHER_SOLUTION=rockchip
+RK_UBOOT_DIR=/usr/lib/aosc-os-arm64-rockchip-boot/u-boot-"$DEVICE_NAME"
+
+BOOTARGS="console=ttyS2,1500000 console=tty0 root=/dev/mmcblk0p4 rootwait earlyprintk panic=10"

@@ -1,0 +1,7 @@
+if [ -e "$RK_UBOOT_DIR"/idbloader.img ]; then
+	u_boot_write_file_addr "$RK_FIRMWARE_DEVICE" "$RK_UBOOT_DIR"/idbloader.img 32768
+fi
+
+if [ -e "$RK_UBOOT_DIR"/u-boot.itb ]; then
+	u_boot_write_file_addr "$RK_FIRMWARE_DEVICE" "$RK_UBOOT_DIR"/u-boot.itb 8388608
+fi
