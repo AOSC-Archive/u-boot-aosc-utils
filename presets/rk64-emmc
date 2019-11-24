@@ -1,6 +1,6 @@
 source /etc/aosc-arm.conf
 
-UBOOT_PART="$SUNXI_KERNEL_DEVICE"
+UBOOT_PART="$RK_KERNEL_DEVICE"
 UBOOT_MEDIA_ID="mmc 0:3"
 UBOOT_ARCH=arm
 
