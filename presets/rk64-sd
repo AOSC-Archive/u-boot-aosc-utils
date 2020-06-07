@@ -17,4 +17,4 @@ UBOOT_FLASHER_DEVICE=block
 UBOOT_FLASHER_SOLUTION=rockchip
 RK_UBOOT_DIR=/usr/lib/aosc-os-arm64-rockchip-boot/u-boot-"$DEVICE_NAME"
 
-BOOTARGS="console=ttyS2,1500000 console=tty0 root=/dev/mmcblk0p4 rootwait earlyprintk panic=10"
+BOOTARGS="console=ttyS2,1500000 console=tty0 root=/dev/mmcblk0p4 rootwait earlyprintk panic=10 quiet"

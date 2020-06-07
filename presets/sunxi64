@@ -17,4 +17,4 @@ UBOOT_FLASHER_DEVICE=block
 UBOOT_FLASHER_SOLUTION=sunxi
 SUNXI_UBOOT_DIR=/usr/lib/aosc-os-arm64-sunxi-boot/u-boot-"$DEVICE_NAME"
 
-BOOTARGS="console=ttyS0,115200 console=tty0 root=/dev/mmcblk0p2 rootwait earlyprintk panic=10"
+BOOTARGS="console=ttyS0,115200 console=tty0 root=/dev/mmcblk0p2 rootwait earlyprintk panic=10 quiet"
